@@ -1,13 +1,16 @@
 import { Hono } from "hono";
 import { serve } from "@hono/node-server";
-
+import { poolActiva} from "./config/db.js";
 const app = new Hono();
 
-app.get("/holaMundo", (c)=>{ return c.text('Hola Mundo!')});
-app.get("/adiosMundo", (c)=>{ return c.text("Adiós Mundo!")});
-app.get("/dameunjson", (c)=>{
-    return c.json({"mensaje": "mi primer json por http"});
+app.get("/User", async (c)=>{
+    const { rows }= await poolActiva.query('SELECT * FROM "User"');
+    return c.json(rows);
 });
 
+app.get("/UserA", async (c)=>{
+    const { rows }= await poolActiva.query(`SELECT * FROM "User" WHERE username LIKE 'a%' OR username LIKE 'A%'`);
+    return c.json(rows);
+});
 
 serve(app);
