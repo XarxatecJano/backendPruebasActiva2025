@@ -6,79 +6,85 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="#" method="post" autocomplete="on" novalidate>
-    <h1>Nuevo usuario</h1>
+    <form action="/User" method="POST">
+        <h1>Nuevo usuario</h1>
 
-    <!-- Nombre de usuario -->
-    <label for="username">Nombre de usuario</label>
-    <input
-      type="text"
-      id="username"
-      name="username"
-      required
-      minlength="3"
-      maxlength="32"
-      autocomplete="username"
-      placeholder="p.ej. jgomez"
-      pattern="^[a-zA-Z0-9._-]{3,32}$"
-      title="De 3 a 32 caracteres; letras, números, punto, guion y guion bajo."
-    />
+        <p>
+            <label for="username">Nombre de usuario</label>
+            <input
+            type="text"
+            id="username"
+            name="username"
+            required
+            minlength="8"
+            maxlength="20"
+            autocomplete="username"
+            placeholder="p.ej. jgomez"
+            pattern="^[a-zA-Z0-9._-]{8,20}$"
+            title="De 8 a 20 caracteres; letras, números, punto, guion y guion bajo."
+            />
+        </p>
 
-    <!-- Password -->
-    <label for="password">Contraseña</label>
-    <input
-      type="password"
-      id="password"
-      name="password"
-      required
-      minlength="8"
-      autocomplete="new-password"
-      placeholder="Mínimo 8 caracteres"
-      title="Mínimo 8 caracteres. Se recomienda incluir mayúsculas, minúsculas, números y símbolos."
-    />
+        <p>
+            <label for="password">Password: </label>
+            <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            minlength="8"
+            autocomplete="new-password"
+            placeholder="Mínimo 8 caracteres"
+            title="Mínimo 8 caracteres. Se recomienda incluir mayúsculas, minúsculas, números y símbolos."
+            />
+        </p>
+            
+        <p>       
+            <label for="phone">Teléfono</label>
+            <input
+            type="tel"
+            id="phone"
+            name="phone"
+            inputmode="tel"
+            autocomplete="tel"
+            placeholder="+34 600 123 456"
+            pattern="[0-9+\s\-()]{7,}"
+            title="Introduce un teléfono válido (puede incluir +, espacios, guiones y paréntesis)."
+            />
+        </p>    
+    
+        <p>
+            <label for="email">Email</label>
+            <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            autocomplete="email"
+            placeholder="usuario@dominio.com"
+            />
+        </p>
 
-    <!-- Teléfono -->
-    <label for="phone">Teléfono</label>
-    <input
-      type="tel"
-      id="phone"
-      name="phone"
-      inputmode="tel"
-      autocomplete="tel"
-      placeholder="+34 600 123 456"
-      pattern="[0-9+\s\-()]{7,}"
-      title="Introduce un teléfono válido (puede incluir +, espacios, guiones y paréntesis)."
-      required
-    />
+        <p>
+            <label for="postal_code">Código postal</label>
+            <input
+            type="text"
+            id="postal_code"
+            name="zip_code"
+            inputmode="numeric"
+            autocomplete="postal-code"
+            placeholder="28001"
+            pattern="^\d{5}$"
+            maxlength="5"
+            title="Introduce un código postal de 5 dígitos."
+            required
+            />
+            <small id="postalHelp">Formato España: 5 dígitos (ej. 28001).</small>
+        </p>
 
-    <!-- Email -->
-    <label for="email">Email</label>
-    <input
-      type="email"
-      id="email"
-      name="email"
-      required
-      autocomplete="email"
-      placeholder="usuario@dominio.com"
-    />
-
-    <!-- Código postal (España: 5 dígitos) -->
-    <label for="postal_code">Código postal</label>
-    <input
-      type="text"
-      id="postal_code"
-      name="postal_code"
-      inputmode="numeric"
-      autocomplete="postal-code"
-      placeholder="28001"
-      pattern="^\d{5}$"
-      maxlength="5"
-      title="Introduce un código postal de 5 dígitos."
-      required
-    />
-    <small id="postalHelp">Formato España: 5 dígitos (ej. 28001).</small>
-
-    <button type="submit">Crear cuenta</button>
+    <p>
+        <button type="submit">Registrar</button>
+    </p>
   </form>
 </body>
 </html>

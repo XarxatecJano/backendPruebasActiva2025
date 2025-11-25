@@ -1,22 +1,19 @@
 import { Hono } from "hono";
 import { serve } from "@hono/node-server";
 import { serveStatic } from "@hono/node-server/serve-static";
-import { poolActiva} from "./config/db.js";
+import { programmingHistoryFact } from "./middleware/programmingHistoryFact.js";
+import userRouter from "./routes/userRouter.js";
+import factsRouter  from "./routes/factsRouter.js";
+
 const app = new Hono();
 
-
 app.use("/*", serveStatic({ root: './public' }));
+app.use("/*", programmingHistoryFact);
 
 
-app.get("/User", async (c)=>{
-    const { rows }= await poolActiva.query('SELECT * FROM "User"');
-    return c.json(rows);
-});
+app.route("/api/v1/Fact", factsRouter);
+app.route("/api/v1/User", userRouter);
 
-app.get("/UserA", async (c)=>{
-    const { rows }= await poolActiva.query(`SELECT * FROM "User" WHERE username LIKE 'a%' OR username LIKE 'A%'`);
-    return c.json(rows);
-});
 
 const port = process.env.PORT;
 serve(app, ({port})=>{
