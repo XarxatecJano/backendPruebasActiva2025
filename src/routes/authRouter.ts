@@ -10,12 +10,12 @@ authRouter.post("/login", async (c)=>{
     const result = await poolActiva.query(query);
     
     const isValidUsername = result.rowCount > 0;
-    if (!isValidUsername) return c.json({"error": "Usuario y/o password incorrectos"}, 401);
+    if (!isValidUsername) return c.redirect("/login.html?error=1");
 
     if (isValidUsername && typeof body.password == 'string') {
         const isValidPassword = await bcrypt.compare(body.password, result.rows[0].password)
-        if (!isValidPassword) return c.json({"error": "Usuario y/o password incorrectos"}, 401);
-        if (isValidPassword) return c.json({"msg": "autenticado con éxito"}, 200);
+        if (!isValidPassword) return c.redirect("/login.html?error=1");
+        if (isValidPassword) return c.redirect("/home.html");
     }
 });
 
