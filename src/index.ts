@@ -1,15 +1,17 @@
 import { Hono } from "hono";
 import { serve } from "@hono/node-server";
 import { serveStatic } from "@hono/node-server/serve-static";
-import { programmingHistoryFact } from "./middleware/programmingHistoryFact.js";
+//import { programmingHistoryFact } from "./middleware/programmingHistoryFact.js";
 import userRouter from "./routes/userRouter.js";
 import factsRouter  from "./routes/factsRouter.js";
 import authRouter from "./routes/authRouter.js";
+import { sessionParser } from "./middleware/authMiddleware.js";
 
 const app = new Hono();
 
 app.use("/*", serveStatic({ root: './public' }));
-app.use("/*", programmingHistoryFact);
+//app.use("/*", programmingHistoryFact);
+app.use("/*", sessionParser);
 
 
 app.route("/api/v1/Fact", factsRouter);

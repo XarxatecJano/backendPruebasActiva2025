@@ -1,10 +1,11 @@
 import { Hono } from "hono";
 import { poolActiva } from "../config/db.js";
 import bcrypt from 'bcrypt';
+import { isAdmin } from "../middleware/authMiddleware.js";
 
 const userRouter = new Hono();
 
-userRouter.get("/", async (c) => {
+userRouter.get("/", isAdmin, async (c) => {
     const { rows } = await poolActiva.query('SELECT * FROM "User"');
     return c.json(rows);
 });

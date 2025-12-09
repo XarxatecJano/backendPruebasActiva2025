@@ -190,3 +190,150 @@ button:active {
 .logout-link:active {
   transform: scale(0.99);
 }
+
+/* App layout */
+.app-layout {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "sidebar main";
+  grid-template-columns: 220px 1fr;
+  grid-template-rows: 60px 1fr;
+  min-height: 100vh;
+  padding: 0;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.top-bar {
+  grid-area: header;
+  background: #fff;
+  border-bottom: 1px solid #ebebeb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.top-bar-brand {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+}
+
+.top-bar-user {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.username-display {
+  font-size: 14px;
+  font-weight: 500;
+  color: #222;
+}
+
+.btn-logout {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(to right, #e61e4d, #e31c5f, #d70466);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: transform 0.1s, box-shadow 0.2s;
+}
+
+.btn-logout:hover {
+  transform: scale(1.02);
+  box-shadow: 0 2px 8px rgba(227, 28, 95, 0.4);
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background: #fff;
+  border-right: 1px solid #ebebeb;
+  padding: 24px 0;
+}
+
+.sidebar-menu {
+  list-style: none;
+}
+
+.sidebar-link {
+  display: block;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #717171;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sidebar-link:hover {
+  background: #f7f7f7;
+  color: #222;
+}
+
+.sidebar-link.active {
+  color: #e31c5f;
+  background: #fef2f2;
+  border-left: 3px solid #e31c5f;
+}
+
+.main-content {
+  grid-area: main;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.content-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+  padding: 32px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.content-card h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.data-table th {
+  font-size: 12px;
+  font-weight: 600;
+  color: #717171;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.data-table td {
+  font-size: 14px;
+  color: #222;
+}
+
+.data-table tbody tr:hover {
+  background: #f7f7f7;
+}

@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { poolActiva } from "../config/db.js";
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 const authRouter = new Hono();
 
@@ -15,7 +16,15 @@ authRouter.post("/login", async (c)=>{
     if (isValidUsername && typeof body.password == 'string') {
         const isValidPassword = await bcrypt.compare(body.password, result.rows[0].password)
         if (!isValidPassword) return c.redirect("/login.html?error=1");
-        if (isValidPassword) return c.redirect("/home.html");
+        if (isValidPassword) {
+            const jwtToken = jwt.sign(
+                {username: result.rows[0].username, role: result.rows[0].role},
+                process.env.JSON_WEB_TOKEN_SECRET,  
+                {expiresIn: "2h"}
+            )
+            c.header('Set-Cookie', `token=${jwtToken}; HttpOnly; Path=/`);
+            return c.redirect("/home.html");
+        } 
     }
 });
 

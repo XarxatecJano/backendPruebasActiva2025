@@ -3,14 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenido</title>
+    <title>Inicio</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-    <div class="welcome-card">
-        <h1>¡Bienvenido!</h1>
-        <p class="welcome-message">Has iniciado sesión correctamente.</p>
-        <a href="login.html" class="logout-link">Cerrar sesión</a>
-    </div>
+<body class="app-layout">
+    <header class="top-bar">
+        <div class="top-bar-brand">Mi Aplicación</div>
+        <div class="top-bar-user">
+            <span id="username-display" class="username-display">Usuario</span>
+            <a href="login.html" class="btn-logout">Cerrar sesión</a>
+        </div>
+    </header>
+
+    <nav class="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="#" id="btn-list-users" class="sidebar-link">Listar usuarios</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div id="error-message" class="error-message hidden">
+            No tienes permisos para realizar la operación solicitada
+        </div>
+        <div id="welcome-section" class="welcome-card">
+            <h1>¡Bienvenido!</h1>
+            <p class="welcome-message">Has iniciado sesión correctamente.</p>
+        </div>
+        <div id="users-section" class="content-card hidden">
+            <h2>Listado de usuarios</h2>
+            <table id="users-table" class="data-table">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Código postal</th>
+                        <th>Rol</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="js/home.js"></script>
 </body>
 </html>
