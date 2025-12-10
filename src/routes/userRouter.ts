@@ -40,4 +40,23 @@ userRouter.delete("/:id", isAdmin, async(c)=>{
     }
 })
 
+userRouter.put("/:id", isAdmin, async (c)=>{
+    const body = await c.req.json();
+    const userToUpdateId = c.req.param("id");
+    try {
+        const query = `UPDATE "User" SET username = '${body.username}', zip_code = '${body.zip_code}', phone = '${body.phone}', email='${body.email}', role = '${body.role}', updated_at = '${body.updated_at}' WHERE id = ${userToUpdateId} `;
+        console.log(query);
+        const result = await poolActiva.query(query);
+
+        if (result.rowCount > 0) {
+            return c.json({ success: true, message: 'Usuario actualizado correctamente' });
+        } else {
+            return c.json({ success: false, message: 'Usuario no encontrado' }, 404);
+        }
+    } catch (error) {
+        console.error('Error actualizando usuario:', error);
+        return c.json({ success: false, message: 'Error interno del servidor' }, 500);
+    }
+})
+
 export default userRouter;

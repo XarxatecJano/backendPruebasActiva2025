@@ -31,9 +31,9 @@
         </div>
         <div id="users-section" class="content-card hidden">
             <h2>Listado de usuarios</h2>
-            <div id="success-message" class="success-message hidden">
+            <div id="delete-success-message" class="success-message-delete hidden">
                 <span>Usuario eliminado correctamente</span>
-                <button id="close-success" class="close-btn">×</button>
+                <button id="close-delete-success" class="close-btn">×</button>
             </div>
             <table id="users-table" class="data-table">
                 <thead>
@@ -48,6 +48,49 @@
                 </thead>
                 <tbody></tbody>
             </table>
+        </div>
+
+        <div id="edit-section" class="content-card hidden">
+            <h2>Editar usuario</h2>
+            <div id="update-success-message" class="success-message-update hidden">
+                <span>Usuario actualizado correctamente</span>
+                <button id="close-update-success" class="close-btn">×</button>
+            </div>
+            <form id="edit-form" class="edit-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-username">Nombre de usuario</label>
+                        <input type="text" id="edit-username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-email">Email</label>
+                        <input type="email" id="edit-email" name="email">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-phone">Teléfono</label>
+                        <input type="tel" id="edit-phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-zip">Código postal</label>
+                        <input type="text" id="edit-zip" name="zip_code">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-role">Rol</label>
+                        <select id="edit-role" name="role">
+                            <option value="user">Usuario</option>
+                            <option value="admin">Administrador</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="cancel-edit" class="btn-secondary">Cancelar</button>
+                    <button type="submit" id="submit-edit" class="btn-primary">Guardar cambios</button>
+                </div>
+            </form>
         </div>
     </main>
 
