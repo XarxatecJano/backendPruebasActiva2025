@@ -31,6 +31,10 @@
         </div>
         <div id="users-section" class="content-card hidden">
             <h2>Listado de usuarios</h2>
+            <div id="success-message" class="success-message hidden">
+                <span>Usuario eliminado correctamente</span>
+                <button id="close-success" class="close-btn">×</button>
+            </div>
             <table id="users-table" class="data-table">
                 <thead>
                     <tr>
@@ -39,12 +43,26 @@
                         <th>Teléfono</th>
                         <th>Código postal</th>
                         <th>Rol</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
             </table>
         </div>
     </main>
+
+    <!-- Modal de confirmación -->
+    <div id="delete-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <h3>Confirmar eliminación</h3>
+            <p>¿Estás seguro de que quieres eliminar este usuario?</p>
+            <div class="modal-actions">
+                <button id="cancel-delete" class="btn-secondary">Cancelar</button>
+                <button id="confirm-delete" class="btn-danger">Eliminar</button>
+            </div>
+        </div>
+    </div>
 
     <script src="js/home.js"></script>
 </body>

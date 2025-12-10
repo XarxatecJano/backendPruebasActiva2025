@@ -22,4 +22,22 @@ userRouter.post("/", async (c) => {
     }
 });
 
+userRouter.delete("/:id", isAdmin, async(c)=>{
+    const userToDeleteId = c.req.param("id");
+    
+    try {
+        const query = `DELETE FROM "User" WHERE id = ${userToDeleteId}`;
+        const result = await poolActiva.query(query);
+        
+        if (result.rowCount > 0) {
+            return c.json({ success: true, message: 'Usuario eliminado correctamente' });
+        } else {
+            return c.json({ success: false, message: 'Usuario no encontrado' }, 404);
+        }
+    } catch (error) {
+        console.error('Error eliminando usuario:', error);
+        return c.json({ success: false, message: 'Error interno del servidor' }, 500);
+    }
+})
+
 export default userRouter;
