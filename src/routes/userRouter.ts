@@ -44,8 +44,7 @@ userRouter.put("/:id", isAdmin, async (c)=>{
     const body = await c.req.json();
     const userToUpdateId = c.req.param("id");
     try {
-        const query = `UPDATE "User" SET username = '${body.username}', zip_code = '${body.zip_code}', phone = '${body.phone}', email='${body.email}', role = '${body.role}', updated_at = '${body.updated_at}' WHERE id = ${userToUpdateId} `;
-        console.log(query);
+        const query = `UPDATE "User" SET username = '${body.username}', zip_code = '${body.zip_code}', phone = '${body.phone}', email = '${body.email}', role = '${body.role}', updated_at = '${body.updated_at}' WHERE id = ${userToUpdateId}`;
         const result = await poolActiva.query(query);
 
         if (result.rowCount > 0) {

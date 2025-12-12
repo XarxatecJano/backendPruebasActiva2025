@@ -156,11 +156,11 @@ editForm.addEventListener('submit', async (e) => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    username: user.username,
-                    zip_code: user.zip_code,
-                    phone: user.phone,
-                    role: user.role,
-                    email: user.email,
+                    username: document.getElementById('edit-username').value,
+                    zip_code: document.getElementById('edit-zip').value,
+                    phone: document.getElementById('edit-phone').value,
+                    role: document.getElementById('edit-role').value,
+                    email: document.getElementById('edit-email').value,
                     updated_at: updatedDate
                 })
             });
