@@ -1,13 +1,18 @@
 import { Context } from "hono";
 import { poolActiva } from "../config/db.js";
 import bcrypt from 'bcrypt';
+import { User } from "../types/User.js";
+import { UserModel } from "../model/UserModel.js";
 
 export class UserController{
 
     static async findUsers(c:Context){
-        
-            const { rows } = await poolActiva.query('SELECT * FROM "User"');
-            return c.json(rows);
+            
+            const users: User[] = await UserModel.findUsers();
+            if (!users){
+                return c.json({ error: 'Error al obtener usuarios' }, 500);
+            }
+            return c.json(users);
     }
 
     static async newUser(c:Context){
@@ -60,7 +65,7 @@ export class UserController{
         }
     }
     
-    
+
 }
     
 
