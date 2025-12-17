@@ -7,9 +7,18 @@ export const sessionParser: MiddlewareHandler = async (c, next) => {
     
     if(c.req.header('Cookie')){
         const token = getCookie(c, 'token');
-        const decodedToken: TokenPayload = jwt.verify(token, process.env.JSON_WEB_TOKEN_SECRET) as TokenPayload;
-        c.set('username', decodedToken.username);
-        c.set('role', decodedToken.role);
+        
+        // Solo intentar verificar el token si existe
+        if (token) {
+            try {
+                const decodedToken: TokenPayload = jwt.verify(token, process.env.JSON_WEB_TOKEN_SECRET) as TokenPayload;
+                c.set('username', decodedToken.username);
+                c.set('role', decodedToken.role);
+            } catch (error) {
+                // Token inválido o expirado, no hacer nada
+                console.log('Token inválido:', error.message);
+            }
+        }
     }
 
     await next();

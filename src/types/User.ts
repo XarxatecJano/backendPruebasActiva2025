@@ -9,3 +9,11 @@ export interface User {
     email: string,
     role:string
 }
+
+export interface newUserDTO {
+    username: string,
+    password: string,
+    zip_code: string,
+    phone: string,
+    email: string
+}
