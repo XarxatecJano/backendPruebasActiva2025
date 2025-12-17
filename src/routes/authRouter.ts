@@ -20,7 +20,7 @@ authRouter.post("/login", async (c)=>{
             const jwtToken = jwt.sign(
                 {username: result.rows[0].username, role: result.rows[0].role},
                 process.env.JSON_WEB_TOKEN_SECRET,  
-                {expiresIn: "2h"}
+                {expiresIn: "8h"}
             )
             c.header('Set-Cookie', `token=${jwtToken}; HttpOnly; Path=/`);
             return c.redirect("/home.html");

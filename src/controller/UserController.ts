@@ -54,7 +54,7 @@ export class UserController{
 
     static async updateUser(c:Context){
        
-        const body = await c.req.parseBody();
+        const body = await c.req.json();
         const userToUpdateId = c.req.param("id");
         
         // Validar que los campos requeridos estén presentes

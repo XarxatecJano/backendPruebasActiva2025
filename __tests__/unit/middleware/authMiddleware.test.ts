@@ -80,7 +80,8 @@ describe('authMiddleware', () => {
       });
 
       // Should not throw, but continue execution
-      await expect(sessionParser(mockContext, mockNext)).rejects.toThrow('Invalid token');
+      await expect(sessionParser(mockContext, mockNext)).resolves.not.toThrow();
+      expect(mockNext).toHaveBeenCalled();
     });
   });
 

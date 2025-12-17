@@ -192,7 +192,7 @@ describe('UserController', () => {
       };
 
       const mockContext = createMockContext();
-      mockContext.req.parseBody = jest.fn().mockResolvedValue(mockBody);
+      mockContext.req.json = jest.fn().mockResolvedValue(mockBody);
       mockContext.req.param = jest.fn().mockReturnValue('1');
       mockUserModel.updateUser = jest.fn().mockResolvedValue({ rowCount: 1 });
 
@@ -217,7 +217,7 @@ describe('UserController', () => {
       };
 
       const mockContext = createMockContext();
-      mockContext.req.parseBody = jest.fn().mockResolvedValue(mockBody);
+      mockContext.req.json = jest.fn().mockResolvedValue(mockBody);
       mockContext.req.param = jest.fn().mockReturnValue('999');
       mockUserModel.updateUser = jest.fn().mockResolvedValue({ rowCount: 0 });
 
@@ -239,7 +239,7 @@ describe('UserController', () => {
       };
 
       const mockContext = createMockContext();
-      mockContext.req.parseBody = jest.fn().mockResolvedValue(mockBody);
+      mockContext.req.json = jest.fn().mockResolvedValue(mockBody);
       mockContext.req.param = jest.fn().mockReturnValue('1');
       mockUserModel.updateUser = jest.fn().mockRejectedValue(new Error('Database error'));
 
@@ -263,7 +263,7 @@ describe('UserController', () => {
       };
 
       const mockContext = createMockContext();
-      mockContext.req.parseBody = jest.fn().mockResolvedValue(mockBody);
+      mockContext.req.json = jest.fn().mockResolvedValue(mockBody);
       mockContext.req.param = jest.fn().mockReturnValue('1');
 
       await UserController.updateUser(mockContext);
